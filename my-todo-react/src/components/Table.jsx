@@ -7,15 +7,14 @@ import axios from 'axios';
 
 
 function Table() {
-    const [data, setData] = useState("");
+    const [data, setData] = useState([]);
 
     const fetchAPI = async () => {
-        try {
-            const response = await axios.get("http://localhost:3000/tickets");
-            setData(response.data);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+
+        const response = await axios.get("http://localhost:3000/tickets");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+        
     }
 
     useEffect(() => {
@@ -46,15 +45,18 @@ function Table() {
                         </tr>
                     </thead>
                     <tbody>
-                            <tr className="table-active">
-                                <th scope="row">{data.id}</th>
-                                <td align="right">{data.title}</td>
-                                <td align="right"></td>
-                                <td align="right"></td>
-                                <td align="right"></td>
-                                <td align="right"></td>
-                                <td align="right"></td>
+                        {data.map(val => (
+                            <tr key={val.id} className="table-active">
+                                <th scope="row">{val.id}</th>
+                                <td align="right">{val.title}</td>
+                                <td align="right">{val.description}</td>
+                                <td align="right">{val.contact}</td>
+                                <td align="right">{val.created_at}</td>
+                                <td align="right">{val.updated_at}</td>
+                                <td align="right">{val.status}</td>
                             </tr>
+                        ))}
+
                     </tbody>
                 </table>
             </div>
