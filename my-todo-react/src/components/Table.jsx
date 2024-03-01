@@ -48,12 +48,12 @@ function Table() {
                         {data.map(val => (
                             <tr key={val.id} className="table-active">
                                 <th scope="row">{val.id}</th>
-                                <td align="right">{val.title}</td>
-                                <td align="right">{val.description}</td>
-                                <td align="right">{val.contact}</td>
-                                <td align="right">{val.created_at}</td>
-                                <td align="right">{val.updated_at}</td>
-                                <td align="right">{val.status}</td>
+                                <td align="left">{val.title}</td>
+                                <td align="left">{val.description}</td>
+                                <td align="left">{val.contact}</td>
+                                <td align="left">{val.created_at}</td>
+                                <td align="left">{val.updated_at}</td>
+                                <td align="left">{val.status}</td>
                             </tr>
                         ))}
 
