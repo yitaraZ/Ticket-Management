@@ -28,7 +28,7 @@ function Table() {
             <Header />
 
             <div style={{ width: '75%', margin: '0 auto' }}>
-                <h1 style={{ fontSize: '2em', marginBottom: '20px', textAlign: 'center' }}>Ticket list</h1>
+                <h1 style={{ fontSize: '2em', margin: '30px', textAlign: 'center' }}>Ticket list</h1>
 
                 <Dropdown />
                 <div style={{ margin: '20px' }}></div>
@@ -51,9 +51,10 @@ function Table() {
                                 <td align="left">{val.title}</td>
                                 <td align="left">{val.description}</td>
                                 <td align="left">{val.contact}</td>
+                                <td align="left">{val.status}</td>
                                 <td align="left">{val.created_at}</td>
                                 <td align="left">{val.updated_at}</td>
-                                <td align="left">{val.status}</td>
+                                
                             </tr>
                         ))}
 

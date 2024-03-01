@@ -119,21 +119,29 @@ app.put('/ticket', (req,res) => {
 
     //console.log(id,title,description,contact,status)
     //validation
-    if(!id ||!title||!description||!contact||!status){
-        return res.status(400).send({error : true, message: "Please provide ticket id, title, description contact information and status"});
+    if(!id ||!status){
+        return res.status(400).send({error : true, message: "Please provide ticket id, status"});
     }else{
-        dbCon.query('UPDATE tickets SET title = ?, description = ?, contact = ?, status = ? WHERE id = ?', [title,description,contact,status,id], (error,results,fields)  => {
-            if(error) throw error;
+        let updateObject = {};
+        if (title !== undefined) updateObject.title = title;
+        if (description !== undefined) updateObject.description = description;
+        if (contact !== undefined) updateObject.contact = contact;
 
-            let message = "";
-            if(results.changedRows === 0){
-                message = "Ticket not found or date are same";
-            }else{
-                message = "Ticket successfully update";
-            }
-            
-            return res.send({error: false, data:results, message: message})
-        })
+        if (Object.keys(updateObject).length === 0) {
+            return res.status(400).send({ error: true, message: "No valid fields provided for update." });
+        }
+
+        updateObject.status = status;
+        
+        dbCon.query('UPDATE tickets SET ? WHERE id = ?', [updateObject, id], (error, results, fields) => {
+            if (error) throw error;
+
+            let message = results.changedRows === 0
+                ? "Ticket not found or no changes made"
+                : "Ticket successfully updated";
+
+            return res.send({ error: false, data: results, message: message });
+        });
     }
 })
 
