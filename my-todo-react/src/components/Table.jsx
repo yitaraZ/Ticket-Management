@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.css';
 import Dropdown from './Dropdown';
 import Footer from './Footer';
+import axios from 'axios';
 
 
 function Table() {
+    const [data, setData] = useState("");
+
+    const fetchAPI = async () => {
+        try {
+            const response = await axios.get("http://localhost:3000/tickets");
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchAPI()
+    }, [])
+
+    console.log(data);
+
     return (
         <>
             <Header />
@@ -15,8 +33,8 @@ function Table() {
 
                 <Dropdown />
                 <div style={{ margin: '20px' }}></div>
-                <table class="table">
-                    <thead class="table-dark">
+                <table className="table">
+                    <thead className="table-dark">
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Title</th>
@@ -28,35 +46,15 @@ function Table() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-active">
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>@fat</td>
-                            <td>@fat</td>
-                            <td>@fat</td>
-
-                        </tr>
-                        <tr class="table-active">
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                            <td>@twitter</td>
-                            <td>@twitter</td>
-                            <td>@twitter</td>
-
-                        </tr>
+                            <tr className="table-active">
+                                <th scope="row">{data.id}</th>
+                                <td align="right">{data.title}</td>
+                                <td align="right"></td>
+                                <td align="right"></td>
+                                <td align="right"></td>
+                                <td align="right"></td>
+                                <td align="right"></td>
+                            </tr>
                     </tbody>
                 </table>
             </div>
