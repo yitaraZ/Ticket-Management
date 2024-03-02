@@ -1,37 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
 import 'bootstrap/dist/css/bootstrap.css';
-import Dropdown from './Dropdown';
-import Footer from './Footer';
 import axios from 'axios';
+import Filter from './Filter';
 
 
 function Table() {
     const [data, setData] = useState([]);
 
     const fetchAPI = async () => {
-
         const response = await axios.get("http://localhost:3000/tickets");
         const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
         setData(dataArray);
-        
     }
-
     useEffect(() => {
         fetchAPI()
     }, [])
 
-    console.log(data);
+    const filterPending =  async () => {
+        const response = await axios.get("http://localhost:3000/tickets/pending");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+    }
+    
+    const filterAccepted =  async () => {
+        const response = await axios.get("http://localhost:3000/tickets/accepted");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+    }
+    
+    const filterRejected =  async () => {
+        const response = await axios.get("http://localhost:3000/tickets/rejected");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+    }
+
+    const filterResolved =  async () => {
+        const response = await axios.get("http://localhost:3000/tickets/resolved");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+    }
+
+    const sortlatest =  async () => {
+        const response = await axios.get("http://localhost:3000/tickets/latestupdate");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+    }
+
+    const sortstatus =  async () => {
+        const response = await axios.get("http://localhost:3000/tickets/status");
+        const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
+        setData(dataArray);
+    }
+    
+    const filterall = [fetchAPI,filterPending, filterAccepted, filterRejected,filterResolved,sortlatest,sortstatus];
 
     return (
         <>
-            <Header />
-
+            <Filter FilterFunciton={filterall} />
             <div style={{ width: '75%', margin: '0 auto' }}>
-                <h1 style={{ fontSize: '2em', margin: '30px', textAlign: 'center' }}>Ticket list</h1>
-
-                <Dropdown />
                 <div style={{ margin: '20px' }}></div>
+                
                 <table className="table">
                     <thead className="table-dark">
                         <tr>
@@ -61,7 +89,6 @@ function Table() {
                     </tbody>
                 </table>
             </div>
-            <Footer />
         </>
     )
 }

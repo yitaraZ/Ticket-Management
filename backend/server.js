@@ -43,7 +43,7 @@ app.get('/tickets',(req, res) => {
 })
 
 //sort latest update
-app.get('/ticket/latestupdate',(req, res) => {
+app.get('/tickets/latestupdate',(req, res) => {
     dbCon.query('SELECT * FROM tickets ORDER BY updated_at desc', (error,results,fields) => {
         if(error) throw error;
 
@@ -58,8 +58,8 @@ app.get('/ticket/latestupdate',(req, res) => {
 })
 
 //sort status
-app.get('/ticket/status',(req, res) => {
-    dbCon.query('SELECT * FROM tickets ORDER BY status', (error,results,fields) => {
+app.get('/tickets/status',(req, res) => {
+    dbCon.query('SELECT * FROM tickets ORDER BY status desc', (error,results,fields) => {
         if(error) throw error;
 
         let message = ""
@@ -73,7 +73,7 @@ app.get('/ticket/status',(req, res) => {
 })
 
 //retrieve status 
-app.get('/ticket/:status',(req, res) => {
+app.get('/tickets/:status',(req, res) => {
     let status = req.params.status;
 
     dbCon.query('SELECT * FROM tickets WHERE status=?',status, (error,results,fields) => {
