@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Header() {
     return (
-        <div style={{ width: '75%', margin: '0 auto',background: '#333', padding: '10px', color: '#fff' }}>
+        <div style={{ width: '75%', margin: '0 auto',background: '#333', padding: '10px' }}>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">Ticket Management</Link>

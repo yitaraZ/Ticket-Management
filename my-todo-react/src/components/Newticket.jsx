@@ -34,28 +34,28 @@ function NewTicket() {
 
 
         <><Header />
-            <div style={{ width: '50%', margin: '0 auto', background: '#333', padding: '10px', color: '#fff' }}>
+            <div style={{ width: '50%', margin: '0 auto' }}>
                 <h1 style={{ fontSize: '2em', margin: '30px', textAlign: 'center' }}>New Ticket</h1>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ border: '2px solid grey', padding: '10px' }} >
                     <div className="input-group mb-3">
-                        <input
+                        <input style={{ border: '2px solid grey' }}
                             type="text" className="form-control" placeholder="Title" aria-label="Server"
                             onChange={(e) => settitle(e.target.value)} value={title} required />
                     </div>
                     <div className="input-group">
-                        <input
+                        <input style={{ border: '2px solid grey' }}
                             type="text" className="form-control" placeholder="Description" aria-label="Server"
                             onChange={(e) => setdescrip(e.target.value)} value={descrip} required />
                     </div>
                     <div style={{ margin: '15px' }}></div>
                     <div className="input-group mb-3">
-                    <input
+                        <input style={{ border: '2px solid grey' }}
                             type="text" className="form-control" placeholder="Contact tel or e-mail" aria-label="Server"
                             onChange={(e) => setcontact(e.target.value)} value={contact} required />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <button className="btn btn-primary">Add Ticket</button>
+                        <button className="btn btn-primary" >Add Ticket</button>
                     </div>
                 </form>
             </div>
