@@ -6,7 +6,11 @@ import Footer from './Footer';
 
 function Update() {
     const { id } = useParams();
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 6ce46ee9c5c61d2f8cbd170f1bcb1eac23f086aa
     const [title, setTitle] = useState('');
     const [descrip, setDescrip] = useState('');
     const [contact, setContact] = useState('');
