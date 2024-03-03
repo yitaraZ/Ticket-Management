@@ -7,7 +7,6 @@ import Footer from './Footer';
 function Update() {
     const { id } = useParams();
 
-    // ตัวแปรสถานะแยกต่างหากสำหรับแต่ละฟิลด์ในฟอร์ม
     const [title, setTitle] = useState('');
     const [descrip, setDescrip] = useState('');
     const [contact, setContact] = useState('');
