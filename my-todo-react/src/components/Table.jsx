@@ -70,9 +70,9 @@ function Table() {
                             <th scope="col">Title</th>
                             <th scope="col">Description</th>
                             <th scope="col">Contact</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Created</th>
                             <th scope="col">Updated</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Update</th>
                         </tr>
                     </thead>
