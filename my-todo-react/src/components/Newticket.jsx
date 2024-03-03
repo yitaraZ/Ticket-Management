@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import Header from './Header';
 import Footer from './Footer';
@@ -55,7 +56,10 @@ function NewTicket() {
                             onChange={(e) => setcontact(e.target.value)} value={contact} required />
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <button className="btn btn-primary" >Add Ticket</button>
+                        <button className="btn btn-primary mx-3" >Add Ticket</button>
+                        <button className="btn btn-primary" >
+                            <Link style={{color:'white'}} to="/">Go back</Link>
+                        </button>
                     </div>
                 </form>
             </div>

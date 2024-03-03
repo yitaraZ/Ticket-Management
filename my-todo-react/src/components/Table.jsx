@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import axios from 'axios';
 import Filter from './Filter';
+import { Link } from 'react-router-dom';
 
 
 function Table() {
@@ -11,10 +12,12 @@ function Table() {
         const response = await axios.get("http://localhost:3000/tickets");
         const dataArray = Array.isArray(response.data.data) ? response.data.data : [];
         setData(dataArray);
+        //console.log(response.data.data[0]);
     }
     useEffect(() => {
         fetchAPI()
     }, [])
+    
 
     const filterPending =  async () => {
         const response = await axios.get("http://localhost:3000/tickets/pending");
@@ -70,6 +73,7 @@ function Table() {
                             <th scope="col">Created</th>
                             <th scope="col">Updated</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,7 +86,7 @@ function Table() {
                                 <td align="left">{val.status}</td>
                                 <td align="left">{val.created_at}</td>
                                 <td align="left">{val.updated_at}</td>
-                                
+                                <td><Link to={`/update-ticket/${val.id}`}>update</Link></td>
                             </tr>
                         ))}
 

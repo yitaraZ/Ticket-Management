@@ -109,8 +109,25 @@ app.post('/ticket', (req,res) => {
     }
 })
 
+app.get('/tickets/id/:id',(req, res) => {
+    let id = req.params.id;
+
+    dbCon.query('SELECT * FROM tickets WHERE id=?',id, (error,results,fields) => {
+        if(error) throw error;
+
+        let message = ""
+        if(results === undefined || results.length == 0){
+            message = "Ticket table is empty";
+        }else{
+            message = "Successfully retrieved all tickets";
+        }
+        return res.send({error: false, data: results,message: message});
+    })
+
+})
+
 // update ticket by title
-app.put('/ticket', (req,res) => {
+app.put('/tickets', (req,res) => {
     let id = req.body.id;
     let title = req.body.title;
     let description = req.body.description;
@@ -119,7 +136,7 @@ app.put('/ticket', (req,res) => {
 
     //console.log(id,title,description,contact,status)
     //validation
-    if(!id ||!status){
+    if(!status){
         return res.status(400).send({error : true, message: "Please provide ticket id, status"});
     }else{
         let updateObject = {};

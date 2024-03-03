@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element: <NewTicket />
   },
   {
-    path: "/update-ticket",
+    path: "/update-ticket/:id",
     element: <Update />
   }
 ])

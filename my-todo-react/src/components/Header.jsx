@@ -20,11 +20,7 @@ function Header() {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/new-ticket">New ticket</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/update-ticket">Update</Link>
-                            </li>
-
-
+                            
                         </ul>
                         
                     </div>
