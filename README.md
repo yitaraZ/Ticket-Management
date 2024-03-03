@@ -1,6 +1,6 @@
 ﻿# Ticket-Management
 
-install database "ticketmanage.sql" before use clone git command
+install database "ticketmanage.sql" in "/my-todo-react/ticketmanage.sql" before use clone git command
 
 clone git
 
